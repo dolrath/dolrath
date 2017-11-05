@@ -1,7 +1,27 @@
 {
   "name": "dolrath",
   "version": "0.0.0",
-  "license": "MIT",
+  "description": "Dolrath (front-end)",
+  "homepage": "https://github.com/dolrath/dolrath#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dolrath/dolrath.git"
+  },
+  "keywords": [
+    "angular",
+    "socket.io",
+    "game",
+    "rpg"
+  ],
+  "author": "dolrath",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dolrath/dolrath/issues"
+  },
+  "readmeFilename": "README.md",
+  "engines": {
+    "node": ">=8.9.0"
+  },
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
@@ -29,6 +49,7 @@
     "@angular/compiler-cli": "^2.3.1",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
+    "@types/socket.io-client": "^1.4.31",
     "angular-cli": "1.0.0-beta.28.3",
     "codelyzer": "~2.0.0-beta.1",
     "jasmine-core": "2.5.2",
