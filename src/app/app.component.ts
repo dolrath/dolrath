@@ -9,6 +9,7 @@ import { SocketService } from './socket.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   private connection;
+  room = 'arena';
   messages: string[] = [];
 
   constructor(private socket: SocketService) { }
@@ -16,7 +17,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.connection = this.socket
       .data()
-      .subscribe(msg => this.messages.push(msg));
+      .subscribe(data => this.messages.push(JSON.stringify(data)));
   }
 
   ngOnDestroy() {
@@ -24,6 +25,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   roll(dice: number): void {
-    this.socket.roll(dice);
+    this.socket.roll(dice, this.room);
+  }
+
+  join(): void {
+    this.socket.join(this.room);
   }
 }
