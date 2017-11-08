@@ -17,6 +17,15 @@ $ npm install
 $ npm start
 ```
 
+### Deploy to Gh-pages
+
+``` bash
+$ npm i -g angular-cli-ghpages
+
+$ ng build --prod --base-href "https://dolrath.github.io/dolrath/"
+$ ngh --no-silent
+```
+
 ### Contributions
 
 1. Fork it
