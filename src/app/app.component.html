@@ -1,13 +1,5 @@
-<button (click)="roll(3)">Rolar D3</button>
-<button (click)="roll(4)">Rolar D4</button>
-<button (click)="roll(6)">Rolar D6</button>
-<button (click)="roll(8)">Rolar D8</button>
-<button (click)="roll(10)">Rolar D10</button>
-<button (click)="roll(12)">Rolar D12</button>
-<button (click)="roll(20)">Rolar D20</button>
-<button (click)="roll(100)">Rolar D100</button>
-<button (click)="join()">join</button>
-
-<div *ngFor="let message of messages">
-  {{ message }}
-</div>
+<h1>{{title}}</h1>
+<nav>
+  <a routerLink="/fights">Fights</a>
+</nav>
+<router-outlet></router-outlet>
