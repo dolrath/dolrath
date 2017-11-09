@@ -1,9 +1,10 @@
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
+import { environment } from '../environments/environment';
+
 
 export class SocketService {
-  private url = 'http://localhost:8080/fights';
   private socket;
 
   roll(dice: number, room: string): void {
@@ -23,7 +24,7 @@ export class SocketService {
 
   data(): any {
     return new Observable(observer => {
-      this.socket = io(this.url);
+      this.socket = io(environment.socket.fightsUrl);
 
       this.socket.on('dice:rolled', data => observer.next(data));
       this.socket.on('room:joined', data => observer.next(data));
