@@ -5,6 +5,17 @@
 
 export const environment = {
   production: false,
+  api: {
+    character: {
+      put: 'http://localhost:8080/characters/%s',
+      get: 'http://localhost:8080/characters/%s',
+    },
+    player: {
+      put: 'http://localhost:8080/players/%s',
+      get: 'http://localhost:8080/players/%s',
+      getAll: 'http://localhost:8080/players',
+    },
+  },
   socket: {
     fightsUrl: 'http://localhost:8080/fights',
   },

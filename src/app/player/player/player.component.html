@@ -1,0 +1,7 @@
+<span *ngIf="player">{{ player.email }}</span>
+
+<hr />
+
+<div *ngFor="let character of player?.characters">
+  <a (click)="go(character.name)">{{ character.name }}</a>
+</div>

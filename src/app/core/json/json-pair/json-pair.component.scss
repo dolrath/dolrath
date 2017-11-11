@@ -1,0 +1,64 @@
+$padding: 1.25em;
+// based on “Ocean Dark” theme
+// https://github.com/kkga/spacegray/blob/master/base16-ocean.dark.tmTheme
+$color-background: #fff;
+
+$color-key: #bf616a;
+$color-value: #0086b3;
+$color-string: #183691;
+$color-number: #0086b3;
+$color-boolean: #0086b3;
+$color-regex: #96b5b4;
+$color-highlight: #fff;
+
+.json__pair {
+  display: block;
+}
+
+.json__key {
+  margin-right: $padding / 2;
+  color: $color-key;
+  &:after {
+    content: ':';
+  }
+  .complex-keys &:before {
+    content: '"';
+  }
+  .complex-keys &:after {
+    content: '":';
+  }
+}
+
+.json__value {
+  background: $color-background;
+  color: $color-value;
+  &:focus {
+    color: $color-highlight;
+  }
+}
+
+.json__value--string {
+  color: $color-string;
+  &:before {
+    content: '"';
+  }
+  &:after {
+    content: '"';
+  }
+  @extend .json__value;
+}
+
+.json__value--number {
+  color: $color-number;
+  @extend .json__value;
+}
+
+.json__value--boolean {
+  color: $color-boolean;
+  @extend .json__value;
+}
+
+.json__value--regex {
+  color: $color-regex;
+  @extend .json__value;
+}
