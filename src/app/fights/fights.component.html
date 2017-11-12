@@ -1,0 +1,34 @@
+<button (click)="roll(3)">Rolar D3</button>
+<button (click)="roll(4)">Rolar D4</button>
+<button (click)="roll(6)">Rolar D6</button>
+<button (click)="roll(8)">Rolar D8</button>
+<button (click)="roll(10)">Rolar D10</button>
+<button (click)="roll(12)">Rolar D12</button>
+<button (click)="roll(20)">Rolar D20</button>
+<button (click)="roll(100)">Rolar D100</button>
+
+<hr />
+
+<div>
+  <label>name:
+    <input [(ngModel)]="roomName" placeholder="room">
+    <button (click)="join()">join</button>
+  </label>
+</div>
+
+<hr />
+
+<div>
+  ROOM: {{ room?.name }}
+  <br /> PLAYERS:
+  <div *ngFor="let player of room?.players">
+    {{ player.id }}
+  </div>
+</div>
+
+<hr />
+
+MESSAGES:
+<div *ngFor="let message of messages">
+  {{ message }}
+</div>
