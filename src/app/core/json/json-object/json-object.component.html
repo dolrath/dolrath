@@ -1,0 +1,6 @@
+<fieldset [ngClass]="value ? 'json__object' : 'json__root'">
+  <a class="json__toggle" *ngIf="visible" (click)="toggle()">-</a>
+  <a class="json__toggle" *ngIf="!visible" (click)="toggle()">+</a>
+  <legend *ngIf="value" class="json__key--nested">{{ value }}</legend>
+  <ng-content *ngIf="visible"></ng-content>
+</fieldset>

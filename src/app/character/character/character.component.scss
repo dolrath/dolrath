@@ -1,0 +1,35 @@
+$font-family: 'Source Code Pro', monospace;
+$padding: 1.25em;
+// based on “Ocean Dark” theme
+// https://github.com/kkga/spacegray/blob/master/base16-ocean.dark.tmTheme4
+$color-background: #fff;
+$color-foreground: #2b303b;
+
+.json {
+  padding: $padding;
+  background: $color-background;
+  color: $color-foreground;
+  *,
+   :focus {
+    border: 0;
+    outline: 0;
+    font: 400 1em/1.5 $font-family;
+  }
+}
+.json__array {
+  padding-left: $padding;
+  &:before,
+  &:after {
+    //display: block;
+    margin-left: -$padding;
+  }
+  &:before {
+    content: '[';
+  }
+  &:after {
+    content: ']';
+  }
+  &>.json__value {
+    display: block;
+  }
+}

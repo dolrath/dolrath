@@ -1,0 +1,79 @@
+$padding: 1.25em;
+$color-key: #bf616a;
+$font-family: 'Source Code Pro',monospace;
+$color-background: #fff;
+$color-toggle: #2b303b;
+
+.json__root {
+  padding-left: $padding;
+  border: 0;
+  outline: 0;
+  font: 400 1em/1.5 $font-family;
+  &:before,
+  &:after {
+    //display: block;
+    margin-left: -$padding;
+  }
+  &:before {
+    content: '{';
+  }
+  &:after {
+    content: '}';
+  }
+}
+
+.json__object {
+  padding-left: $padding;
+  border: 0;
+  outline: 0;
+  font: 400 1em/1.5 $font-family;
+  &:before,
+  &:after {
+    //display: block;
+    margin-left: -$padding;
+  }
+  &:before {
+    content: '{';
+  }
+  &:after {
+    content: '},';
+  }
+}
+
+.json__toggle {
+  width: 14px;
+  height: 14px;
+  border-radius: 5px;
+  line-height: 14px !important;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  color: $color-toggle;
+  background-color: $color-background;
+  border-color: $color-toggle;
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+  margin-right: 21px;
+}
+
+.json__key {
+  margin-right: $padding / 2;
+  color: $color-key;
+  &:after {
+    content: ':';
+  }
+  .complex-keys &:before {
+    content: '"';
+  }
+  .complex-keys &:after {
+    content: '":';
+  }
+}
+
+.json__key--nested {
+  float: left;
+  margin-left: -$padding;
+  margin-right: 1.5 * $padding;
+  @extend .json__key;
+}

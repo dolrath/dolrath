@@ -10,10 +10,17 @@
 <hr />
 
 <div>
-  <label>name:
-    <input [(ngModel)]="roomName" placeholder="room">
-    <button (click)="join()">join</button>
+  <label>
+    room:
+    <input [(ngModel)]="room.name" placeholder="room">
   </label>
+
+  <label>
+    email:
+    <input [(ngModel)]="player.email" placeholder="email">
+  </label>
+
+  <button (click)="join()">join</button>
 </div>
 
 <hr />
@@ -22,13 +29,11 @@
   ROOM: {{ room?.name }}
   <br /> PLAYERS:
   <div *ngFor="let player of room?.players">
-    {{ player.id }}
+    {{ player.email }}
   </div>
 </div>
 
-<hr />
-
-MESSAGES:
+<hr /> MESSAGES:
 <div *ngFor="let message of messages">
   {{ message }}
 </div>

@@ -1,0 +1,30 @@
+<form class="json complex-keys" *ngIf="character">
+  <app-json-object>
+    <app-json-object value="character">
+      <app-json-pair key="name" [value]="character.name" type="string"></app-json-pair>
+      <app-json-pair key="level" [value]="character.level" type="number"></app-json-pair>
+      <app-json-object value="race">
+        <app-json-pair key="name" [value]="character.race.name" type="string"></app-json-pair>
+      </app-json-object>
+      <app-json-object value="hitPoint">
+        <app-json-pair key="actual" [value]="character.hitPoint.actual" type="number"></app-json-pair>
+        <app-json-pair key="total" [value]="character.hitPoint.total" type="number"></app-json-pair>
+      </app-json-object>
+      <app-json-object value="mana">
+        <app-json-pair key="actual" [value]="character.mana.actual" type="number"></app-json-pair>
+        <app-json-pair key="total" [value]="character.mana.total" type="number"></app-json-pair>
+      </app-json-object>
+      <app-json-object value="attr">
+        <app-json-pair key="total" [value]="character.attr.total" type="number"></app-json-pair>
+        <app-json-object value="values">
+          <app-json-pair key="def" [value]="character.attr.values.def" type="number"></app-json-pair>
+          <app-json-pair key="dex" [value]="character.attr.values.dex" type="number"></app-json-pair>
+          <app-json-pair key="int" [value]="character.attr.values.int" type="number"></app-json-pair>
+          <app-json-pair key="spd" [value]="character.attr.values.spd" type="number"></app-json-pair>
+          <app-json-pair key="str" [value]="character.attr.values.str" type="number"></app-json-pair>
+          <app-json-pair key="vit" [value]="character.attr.values.vit" type="number"></app-json-pair>
+        </app-json-object>
+      </app-json-object>
+    </app-json-object>
+  </app-json-object>
+</form>
