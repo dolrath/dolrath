@@ -22,8 +22,7 @@ $ npm start
 ``` bash
 $ npm i -g angular-cli-ghpages
 
-$ ng build --prod --base-href "https://dolrath.github.io/dolrath/"
-$ ngh --no-silent
+$ npm run deploy
 ```
 
 ### Contributions

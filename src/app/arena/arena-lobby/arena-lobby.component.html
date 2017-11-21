@@ -10,12 +10,12 @@
 <hr />
 
 <div>
-  <label>
+  <label *ngIf="room">
     room:
     <input [(ngModel)]="room.name" placeholder="room">
   </label>
 
-  <label>
+  <label *ngIf="player">
     email:
     <input [(ngModel)]="player.email" placeholder="email">
   </label>
