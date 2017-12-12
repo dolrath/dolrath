@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { Character } from '../shared/models';
-import { CharacterService } from '../shared/services';
+import { Character } from '../../core/shared/models';
+import { CharacterService } from '../../core/shared/services';
 
 @Component({
   selector: 'app-character',
@@ -17,15 +17,20 @@ export class CharacterComponent implements OnInit, OnDestroy {
 
   constructor(
     private characterService: CharacterService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.params = this.route.params.subscribe(params => this.characterService
-      .getByName(params['name'])
-      .then(character => this.character = character));
+    this.params = this.route.params.subscribe(async params => {
+      this.character = await this.characterService.getByName(params['name']);
+    });
   }
 
   ngOnDestroy(): void {
     this.params.unsubscribe();
+  }
+
+  enterArena(name: string): void {
+    this.router.navigate([`players/${this.character.player.email}/characters/${name}/arena`]);
   }
 }

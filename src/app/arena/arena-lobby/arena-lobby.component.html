@@ -1,39 +1,67 @@
-<button (click)="roll(3)">Rolar D3</button>
-<button (click)="roll(4)">Rolar D4</button>
-<button (click)="roll(6)">Rolar D6</button>
-<button (click)="roll(8)">Rolar D8</button>
-<button (click)="roll(10)">Rolar D10</button>
-<button (click)="roll(12)">Rolar D12</button>
-<button (click)="roll(20)">Rolar D20</button>
-<button (click)="roll(100)">Rolar D100</button>
+<app-breadcrumb>
+  <app-breadcrumb-item label="Dolrath" link="/"></app-breadcrumb-item>
+  <app-breadcrumb-item [label]="character?.player.email" link="/players/{{ character?.player.email }}"></app-breadcrumb-item>
+  <app-breadcrumb-item [label]="character?.name" link="/players/{{ character?.player.email }}/characters/{{ character?.name }}"></app-breadcrumb-item>
+  <app-breadcrumb-item label="Arena"></app-breadcrumb-item>
+</app-breadcrumb>
 
-<hr />
+<nav class="uk-navbar-container uk-margin uk-navbar">
+  <div class="uk-navbar-left">
+    <div class="uk-navbar-item">
+      <form>
+        <input class="uk-input uk-form-width-small" name="room" [(ngModel)]="room.name" placeholder="Room">
+        <button class="uk-button uk-button-default" (click)="join()">Join</button>
+      </form>
+    </div>
+  </div>
+</nav>
 
-<div>
-  <label *ngIf="room">
-    room:
-    <input [(ngModel)]="room.name" placeholder="room">
-  </label>
+<h2 class="uk-h3">
+  Arena
+</h2>
 
-  <label *ngIf="player">
-    email:
-    <input [(ngModel)]="player.email" placeholder="email">
-  </label>
+<hr class="uk-margin-large" />
 
-  <button (click)="join()">join</button>
+<div class="uk-grid uk-grid-small">
+  <div class="uk-width-1-5@s">
+    <article class="uk-comment uk-text-top" *ngFor="let character of room?.characters; let last = last">
+      <header class="uk-comment-header uk-grid-medium uk-flex-middle uk-grid">
+        <div class="uk-width-auto uk-first-column">
+          <img class="uk-comment-avatar uk-border-rounded uk-background-muted" src="https://goo.gl/PThQqr" width="36" height="36" alt="Character">
+        </div>
+        <div class="uk-width-expand">
+          <h4 class="uk-comment-title uk-margin-remove">
+            <span class="uk-link-reset">{{ (character.name.length>6)? (character.name | slice:0:6)+'..':(character.name) }}</span>
+          </h4>
+        </div>
+      </header>
+
+      <hr *ngIf="!last" />
+    </article>
+  </div>
+  <ul class="uk-width-4-5@s uk-list">
+    <li *ngFor="let message of messages">
+      $
+      <span class="uk-text-muted">{{ message }}</span>
+    </li>
+  </ul>
 </div>
 
-<hr />
+<hr class="uk-margin-large" />
 
-<div>
-  ROOM: {{ room?.name }}
-  <br /> PLAYERS:
-  <div *ngFor="let player of room?.players">
-    {{ player.email }}
+<div class="uk-grid uk-grid-small uk-text-center">
+  <div class="uk-width-1-1">
+    <div class="uk-button-group uk-text-center">
+      <button class="uk-button uk-button-default" (click)="roll(3)">d3</button>
+      <button class="uk-button uk-button-default" (click)="roll(4)">d4</button>
+      <button class="uk-button uk-button-default" (click)="roll(6)">d6</button>
+      <button class="uk-button uk-button-default" (click)="roll(8)">d8</button>
+      <button class="uk-button uk-button-default" (click)="roll(10)">d10</button>
+      <button class="uk-button uk-button-default" (click)="roll(12)">d12</button>
+      <button class="uk-button uk-button-default" (click)="roll(20)">d20</button>
+      <button class="uk-button uk-button-default" (click)="roll(100)">d100</button>
+    </div>
   </div>
 </div>
 
-<hr /> MESSAGES:
-<div *ngFor="let message of messages">
-  {{ message }}
-</div>
+<div class="uk-margin-large"></div>

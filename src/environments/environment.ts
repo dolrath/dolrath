@@ -3,20 +3,25 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
+const apiUrl = 'http://localhost:8080';
+
 export const environment = {
   production: false,
   api: {
     character: {
-      put: 'http://localhost:8080/characters/%s',
-      get: 'http://localhost:8080/characters/%s',
+      put: `${apiUrl}/characters/%s`,
+      delete: `${apiUrl}/characters/%s`,
+      get: `${apiUrl}/characters/%s`,
+      getByEmail: `${apiUrl}/players/%s/characters`,
     },
     player: {
-      put: 'http://localhost:8080/players/%s',
-      get: 'http://localhost:8080/players/%s',
-      getAll: 'http://localhost:8080/players',
+      put: `${apiUrl}/players/%s`,
+      delete: `${apiUrl}/players/%s`,
+      get: `${apiUrl}/players/%s`,
+      getAll: `${apiUrl}/players`,
     },
   },
   socket: {
-    fightsUrl: 'http://localhost:8080/fights',
+    fightsUrl: `${apiUrl}/fights`,
   },
 };

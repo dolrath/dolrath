@@ -1,3 +1,36 @@
-<div *ngFor="let player of players">
-  <a (click)="go(player.email)">{{ player.email }}</a>
+<app-breadcrumb>
+  <app-breadcrumb-item label="Dolrath"></app-breadcrumb-item>
+</app-breadcrumb>
+
+<div class="uk-background-muted uk-padding-small">
+  <a class="uk-button uk-button-text" (click)="createPlayer()">Create a new player.</a>
+</div>
+
+<h2 class="uk-h3">
+  List of players
+</h2>
+
+<div class="uk-margin-large">
+  <article class="uk-comment" *ngFor="let player of players; let last = last">
+    <header class="uk-comment-header uk-grid-medium uk-flex-middle uk-grid">
+      <div class="uk-width-auto uk-first-column">
+        <img class="uk-comment-avatar uk-border-rounded uk-background-muted" src="https://goo.gl/PThQqr" width="80" height="80" alt="Player">
+      </div>
+      <div class="uk-width-expand">
+        <h4 class="uk-comment-title uk-margin-remove">
+          <a class="uk-link-reset" (click)="selectPlayer(player.email)">{{ player.email }}</a>
+        </h4>
+        <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+          <li>
+            <a (click)="selectPlayer(player.email)">Play</a>
+          </li>
+          <li>
+            <a class="uk-text-danger" (click)="deletePlayer(player.email)">Delete</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <hr *ngIf="!last" />
+  </article>
 </div>

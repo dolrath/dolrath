@@ -1,17 +1,22 @@
+const apiUrl = 'https://dolrath-api.herokuapp.com';
+
 export const environment = {
   production: true,
   api: {
     character: {
-      put: 'https://dolrath-api.herokuapp.com/characters/%s',
-      get: 'https://dolrath-api.herokuapp.com/characters/%s',
+      put: `${apiUrl}/characters/%s`,
+      delete: `${apiUrl}/characters/%s`,
+      get: `${apiUrl}/characters/%s`,
+      getByEmail: `${apiUrl}/players/%s/characters`,
     },
     player: {
-      put: 'https://dolrath-api.herokuapp.com/players/%s',
-      get: 'https://dolrath-api.herokuapp.com/players/%s',
-      getAll: 'https://dolrath-api.herokuapp.com/players',
+      put: `${apiUrl}/players/%s`,
+      delete: `${apiUrl}/players/%s`,
+      get: `${apiUrl}/players/%s`,
+      getAll: `${apiUrl}/players`,
     },
   },
   socket: {
-    fightsUrl: 'https://dolrath-api.herokuapp.com/fights',
+    fightsUrl: `${apiUrl}/fights`,
   },
 };

@@ -1,5 +1,18 @@
-<label>
-  email:
-  <input [(ngModel)]="player.email" placeholder="email">
-</label>
-<button (click)="create()">create</button>
+<app-breadcrumb>
+  <app-breadcrumb-item label="Dolrath" link="/"></app-breadcrumb-item>
+  <app-breadcrumb-item label="Create player"></app-breadcrumb-item>
+</app-breadcrumb>
+
+<h2 class="uk-h3">
+  Create a new player
+</h2>
+
+<form class="uk-grid uk-grid-small uk-margin-large">
+  <div class="uk-width-1-1">
+    <input class="uk-input" name="email" [(ngModel)]="player.email" placeholder="Email">
+  </div>
+
+  <div class="uk-width-1-1 uk-grid-margin">
+    <button class="uk-button uk-button-text" (click)="create()">create player</button>
+  </div>
+</form>

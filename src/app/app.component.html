@@ -1,11 +1,19 @@
-<nav>
-  <a routerLink="/">home</a>
-  <a routerLink="/arena">arena</a>
-  <a routerLink="/players">players</a>
-  <a routerLink="/players/create">create player</a>
-  <a routerLink="/characters/create">create character</a>
-</nav>
+<div class="uk-offcanvas-content">
+  <div class="tm-section-texture">
+    <div class="uk-navbar-container uk-navbar-transparent uk-sticky uk-sticky-fixed">
+      <div class="uk-container uk-container-expand">
+        <nav class="uk-navbar">
+          <div class="uk-navbar-left">
+            <a routerLink="/players" class="uk-navbar-item uk-logo uk-active">
+              Dolrath
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
 
-<hr />
-
-<router-outlet></router-outlet>
+    <div class="uk-container uk-container-small uk-position-relative">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

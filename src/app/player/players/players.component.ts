@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { Player } from '../shared/models';
-import { PlayerService } from '../shared/services';
+import { Player } from '../../core/shared/models';
+import { PlayerService } from '../../core/shared/services';
 
 @Component({
   selector: 'app-players',
@@ -17,13 +17,24 @@ export class PlayersComponent implements OnInit {
     private playerService: PlayerService,
     private router: Router) { }
 
-  ngOnInit(): void {
-    this.playerService
-      .get()
-      .then(players => this.players = players);
+  async ngOnInit(): Promise<void> {
+    this.getCharacters();
   }
 
-  go(email: string): void {
+  selectPlayer(email: string): void {
     this.router.navigate([`/players/${email}`]);
+  }
+
+  createPlayer(): void {
+    this.router.navigate(['/players/create']);
+  }
+
+  async deletePlayer(email: string): Promise<void> {
+    await this.playerService.delete(email);
+    await this.getCharacters();
+  }
+
+  private async getCharacters(): Promise<void> {
+    this.players = await this.playerService.get();
   }
 }

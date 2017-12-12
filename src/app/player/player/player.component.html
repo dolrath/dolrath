@@ -1,7 +1,63 @@
-<span *ngIf="player">{{ player.email }}</span>
+<app-breadcrumb>
+  <app-breadcrumb-item label="Dolrath" link="/"></app-breadcrumb-item>
+  <app-breadcrumb-item [label]="player?.email"></app-breadcrumb-item>
+</app-breadcrumb>
 
-<hr />
+<div class="uk-margin-large"></div>
 
-<div *ngFor="let character of player?.characters">
-  <a (click)="go(character.name)">{{ character.name }}</a>
+<article class="uk-comment">
+  <header class="uk-comment-header uk-grid-medium uk-flex-middle uk-grid">
+    <div class="uk-width-auto uk-first-column">
+      <img class="uk-comment-avatar uk-border-rounded uk-background-muted" src="https://goo.gl/PThQqr" width="80" height="80" alt="Char">
+    </div>
+    <div class="uk-width-expand">
+      <h4 class="uk-comment-title uk-margin-remove">
+        <span class="uk-link-reset" *ngIf="player">{{ player.email }}</span>
+        <a class="uk-link-reset" *ngIf="!player">???</a>
+      </h4>
+      <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+        <li>
+          <a *ngIf="player" (click)="selectCharacter(player.email)">Play</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+</article>
+
+<h2 class="uk-h3">
+  List of characters
+</h2>
+
+<div class="uk-margin-large" *ngIf="!characters || characters?.length < 1">
+  <div class="uk-background-muted uk-padding-small">
+    <a class="uk-button uk-button-text" (click)="createCharacter()">Create a new character.</a>
+  </div>
+</div>
+
+<div class="uk-margin-large" *ngIf="characters && characters?.length > 0">
+  <article class="uk-comment" *ngFor="let character of characters; let last = last">
+    <header class="uk-comment-header uk-grid-medium uk-flex-middle uk-grid">
+      <div class="uk-width-auto uk-first-column">
+        <img class="uk-comment-avatar uk-border-rounded uk-background-muted" src="https://goo.gl/5sniFW" width="80" height="80" alt="Char">
+      </div>
+      <div class="uk-width-expand">
+        <h4 class="uk-comment-title uk-margin-remove">
+          <a class="uk-link-reset" (click)="selectCharacter(character.name)">{{ character.name }}</a>
+        </h4>
+        <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+          <li>
+            <span>level {{ character.level }}</span>
+          </li>
+          <li>
+            <a (click)="selectCharacter(character.name)">Play</a>
+          </li>
+          <li>
+            <a class="uk-text-danger" (click)="deleteCharacter(character.name)">Delete</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <hr *ngIf="!last" />
+  </article>
 </div>

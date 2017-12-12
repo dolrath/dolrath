@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { BreadcrumbModule } from '../core/breadcrumb';
 import { JsonModule } from '../core/json';
+import { CharacterService } from '../core/shared/services';
 
 import { CharacterComponent } from './character';
 import { CharacterCreateComponent } from './character-create';
-import { CharacterService } from './shared/services';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { CharacterService } from './shared/services';
     CommonModule,
     FormsModule,
     HttpModule,
+    BreadcrumbModule,
     JsonModule,
   ],
   declarations: [

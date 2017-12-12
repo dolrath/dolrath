@@ -1,13 +1,23 @@
-<label>
-  name:
-  <input [(ngModel)]="character.name" placeholder="name">
-</label>
-<label>
-  player:
-  <input [(ngModel)]="character.player.email" placeholder="player">
-</label>
-<label>
-  race:
-  <input [(ngModel)]="character.race.name" placeholder="race">
-</label>
-<button (click)="create()">create</button>
+<app-breadcrumb>
+  <app-breadcrumb-item label="Dolrath" link="/"></app-breadcrumb-item>
+  <app-breadcrumb-item [label]="email" link="/players/{{ email }}"></app-breadcrumb-item>
+  <app-breadcrumb-item label="Create character"></app-breadcrumb-item>
+</app-breadcrumb>
+
+<h2 class="uk-h3">
+  Create a new character
+</h2>
+
+<form class="uk-grid uk-grid-small uk-margin-large">
+  <div class="uk-width-1-2@s">
+    <input class="uk-input" name="name" [(ngModel)]="character.name" placeholder="Name">
+  </div>
+
+  <div class="uk-width-1-2@s">
+    <input class="uk-input" name="race" [(ngModel)]="character.race.name" placeholder="Race">
+  </div>
+
+  <div class="uk-width-1-1 uk-grid-margin">
+    <button class="uk-button uk-button-text" (click)="create()">create character</button>
+  </div>
+</form>
