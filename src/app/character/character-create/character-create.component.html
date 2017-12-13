@@ -14,7 +14,9 @@
   </div>
 
   <div class="uk-width-1-2@s">
-    <input class="uk-input" name="race" [(ngModel)]="character.race.name" placeholder="Race">
+    <select class="uk-select" name="race" [(ngModel)]="character.race.name">
+      <option *ngFor="let race of races" [ngValue]="race.name">{{ race.name }}</option>
+    </select>
   </div>
 
   <div class="uk-width-1-1 uk-grid-margin">

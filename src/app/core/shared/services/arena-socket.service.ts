@@ -10,7 +10,7 @@ import { Dice, Character, Room } from '../models';
 export class ArenaSocketService {
   private socket;
 
-  constructor() {
+  init(): void {
     this.socket = io(environment.socket.fightsUrl);
   }
 
@@ -33,12 +33,16 @@ export class ArenaSocketService {
     });
   }
 
-  join(room: string): void {
+  join(room: string, character: Character): void {
     if (!room) {
       throw new Error('Room cannot null');
     }
+
     const message = {
       room: room,
+      character: {
+        name: character.name,
+      },
     };
 
     this.socket.emit('room:join', message);

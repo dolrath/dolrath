@@ -1,3 +1,3 @@
 export class Race {
-  constructor(readonly name) { }
+  constructor(readonly name: string) { }
 }

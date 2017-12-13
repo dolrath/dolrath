@@ -21,9 +21,7 @@ export class CharacterComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.params = this.route.params.subscribe(async params => {
-      this.character = await this.characterService.getByName(params['name']);
-    });
+    this.params = this.route.params.subscribe(async params => this.character = await this.characterService.getByName(params['name']));
   }
 
   ngOnDestroy(): void {

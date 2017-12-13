@@ -1,9 +1,9 @@
 import { Character } from '.';
 
 export class Room {
-  readonly characters: Array<Character> = new Array<Character>();
+  readonly characters = new Array<Character>();
 
-  constructor(readonly name: string) { }
+  constructor(public name: string) { }
 
   addPlayer(character: Character): void {
     this.characters.push(character);

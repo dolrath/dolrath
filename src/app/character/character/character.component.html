@@ -8,9 +8,7 @@
   <a class="uk-button uk-button-text" (click)="enterArena(character.name)">Enter the arena.</a>
 </div>
 
-<div class="uk-margin-large"></div>
-
-<form class="json complex-keys" *ngIf="character">
+<form class="json uk-margin-large" *ngIf="character">
   <app-json-object>
     <app-json-object value="character">
       <app-json-pair key="name" [value]="character.name" type="string"></app-json-pair>

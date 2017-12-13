@@ -15,7 +15,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
   private email: string;
 
   player: Player;
-  characters = new Array<Character>();
+  characters: Array<Character>;
 
   constructor(
     private characterService: CharacterService,
@@ -26,9 +26,9 @@ export class PlayerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.params = this.route.params.subscribe(async params => {
       this.email = params['email'];
-
       this.player = await this.playerService.getByEmail(this.email);
-      this.getCharacters();
+
+      await this.getCharacters();
     });
   }
 
@@ -40,13 +40,13 @@ export class PlayerComponent implements OnInit, OnDestroy {
     this.router.navigate([`/players/${this.email}/characters/${name}`]);
   }
 
+  createCharacter(): void {
+    this.router.navigate([`/players/${this.email}/characters/create`]);
+  }
+
   async deleteCharacter(name: string): Promise<void> {
     await this.characterService.delete(name);
     await this.getCharacters();
-  }
-
-  createCharacter(): void {
-    this.router.navigate([`/players/${this.email}/characters/create`]);
   }
 
   private async getCharacters(): Promise<void> {
