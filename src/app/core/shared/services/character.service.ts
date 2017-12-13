@@ -28,6 +28,27 @@ export class CharacterService {
       .catch(this.handleError);
   }
 
+  delete(name: string): Promise<void> {
+    const url = sprintf(this.characterUrl.delete, name);
+
+    return this.http
+      .delete(url, this.options)
+      .toPromise()
+      .catch(this.handleError);
+  }
+
+  getByEmail(email: string): Promise<Array<Character>> {
+    const url = sprintf(this.characterUrl.getByEmail, email);
+
+    return this.http
+      .get(url, this.options)
+      .toPromise()
+      .then(response => response
+        .json()
+        .map(this.map))
+      .catch(this.handleError);
+  }
+
   getByName(name: string): Promise<Character> {
     const url = sprintf(this.characterUrl.get, name);
 

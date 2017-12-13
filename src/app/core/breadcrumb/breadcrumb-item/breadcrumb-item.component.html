@@ -1,0 +1,5 @@
+<li>
+  <a *ngIf="hasLink" (click)="go()">{{ label }}</a>
+  <span *ngIf="!hasLink">{{ label }}</span>
+  <span *ngIf="!hasLink && !label">???</span>
+</li>

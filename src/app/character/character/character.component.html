@@ -1,3 +1,15 @@
+<app-breadcrumb>
+  <app-breadcrumb-item label="Dolrath" link="/"></app-breadcrumb-item>
+  <app-breadcrumb-item [label]="character?.player.email" link="/players/{{ character?.player.email }}"></app-breadcrumb-item>
+  <app-breadcrumb-item [label]="character?.name"></app-breadcrumb-item>
+</app-breadcrumb>
+
+<div class="uk-background-muted uk-padding-small">
+  <a class="uk-button uk-button-text" (click)="enterArena(character.name)">Enter the arena.</a>
+</div>
+
+<div class="uk-margin-large"></div>
+
 <form class="json complex-keys" *ngIf="character">
   <app-json-object>
     <app-json-object value="character">

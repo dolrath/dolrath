@@ -4,10 +4,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { BreadcrumbModule } from '../core/breadcrumb';
+import { PlayerService } from '../core/shared/services';
+
 import { PlayerComponent } from './player';
 import { PlayerCreateComponent } from './player-create';
 import { PlayersComponent } from './players';
-import { PlayerService } from './shared/services';
 
 @NgModule({
   imports: [
@@ -15,6 +17,7 @@ import { PlayerService } from './shared/services';
     CommonModule,
     FormsModule,
     HttpModule,
+    BreadcrumbModule,
   ],
   declarations: [
     PlayerComponent,

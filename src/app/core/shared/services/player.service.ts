@@ -3,7 +3,7 @@ import { sprintf } from 'sprintf-js';
 import { Headers, Http, RequestOptions } from '@angular/http';
 
 import { environment } from '../../../../environments/environment';
-import { Character, Race, Player } from '../models';
+import { Player } from '../models';
 
 @Injectable()
 export class PlayerService {
@@ -25,6 +25,15 @@ export class PlayerService {
       .put(url, body, this.options)
       .toPromise()
       .then(response => this.map(response.json()))
+      .catch(this.handleError);
+  }
+
+  delete(email: string): Promise<void> {
+    const url = sprintf(this.playerUrl.delete, email);
+
+    return this.http
+      .delete(url, this.options)
+      .toPromise()
       .catch(this.handleError);
   }
 
@@ -53,24 +62,6 @@ export class PlayerService {
   }
 
   private map(data: any): Player {
-    const player = new Player(data.email, new Array<Character>());
-
-    return data
-      .characters
-      .reduce((prev, elem) => {
-        const race = new Race(elem.race.name);
-        const character = new Character(
-          elem.name,
-          race,
-          player,
-          elem.level,
-          elem.attr,
-          elem.hitPoint,
-          elem.mana);
-
-        prev.addCharacter(character);
-
-        return prev;
-      }, player);
+    return new Player(data.email);
   }
 }

@@ -9,12 +9,13 @@ import { PlayerCreateComponent } from './player/player-create';
 import { PlayersComponent } from './player/players';
 
 const routes: Routes = [
-  { path: 'arena', component: ArenaLobbyComponent },
-  { path: 'characters/create', component: CharacterCreateComponent },
-  { path: 'characters/:name', component: CharacterComponent },
+  { path: 'players/:email/characters/create', component: CharacterCreateComponent },
+  { path: 'players/:email/characters/:name/arena', component: ArenaLobbyComponent },
+  { path: 'players/:email/characters/:name', component: CharacterComponent },
   { path: 'players/create', component: PlayerCreateComponent },
   { path: 'players/:email', component: PlayerComponent },
   { path: 'players', component: PlayersComponent },
+  { path: '', redirectTo: '/players', pathMatch: 'full' },
 ];
 
 @NgModule({
