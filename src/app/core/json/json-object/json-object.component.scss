@@ -60,13 +60,10 @@ $color-toggle: #2b303b;
 .json__key {
   margin-right: $padding / 2;
   color: $color-key;
-  &:after {
-    content: ':';
-  }
-  .complex-keys &:before {
+  &:before {
     content: '"';
   }
-  .complex-keys &:after {
+  &:after {
     content: '":';
   }
 }

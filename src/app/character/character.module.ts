@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 
 import { BreadcrumbModule } from '../core/breadcrumb';
 import { JsonModule } from '../core/json';
-import { CharacterService } from '../core/shared/services';
+import { CharacterService, RaceService } from '../core/shared/services';
 
 import { CharacterComponent } from './character';
 import { CharacterCreateComponent } from './character-create';
@@ -26,6 +26,7 @@ import { CharacterCreateComponent } from './character-create';
   ],
   providers: [
     CharacterService,
+    RaceService,
   ],
 })
 export class CharacterModule { }

@@ -20,6 +20,9 @@ export const environment = {
       get: `${apiUrl}/players/%s`,
       getAll: `${apiUrl}/players`,
     },
+    race: {
+      getAll: `${apiUrl}/races`,
+    },
   },
   socket: {
     fightsUrl: `${apiUrl}/fights`,

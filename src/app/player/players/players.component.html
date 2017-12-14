@@ -11,6 +11,10 @@
 </h2>
 
 <div class="uk-margin-large">
+  <div *ngIf="!players">
+    <span class="uk-text-lead">Loading...</span>
+  </div>
+
   <article class="uk-comment" *ngFor="let player of players; let last = last">
     <header class="uk-comment-header uk-grid-medium uk-flex-middle uk-grid">
       <div class="uk-width-auto uk-first-column">

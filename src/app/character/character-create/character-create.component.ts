@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { CreateCharacter, Player, Race } from '../../core/shared/models';
-import { CharacterService } from '../../core/shared/services';
+import { CharacterService, RaceService } from '../../core/shared/services';
 
 @Component({
   selector: 'app-character-create',
@@ -14,6 +14,7 @@ export class CharacterCreateComponent implements OnInit, OnDestroy {
   private params: Subscription;
 
   email: string;
+  races = new Array<Race>();
   character = {
     name: '',
     race: {
@@ -23,11 +24,13 @@ export class CharacterCreateComponent implements OnInit, OnDestroy {
 
   constructor(
     private characterService: CharacterService,
+    private raceService: RaceService,
     private route: ActivatedRoute,
     private router: Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.params = this.route.params.subscribe(async params => this.email = params['email']);
+    this.races = await this.raceService.get();
   }
 
   ngOnDestroy(): void {

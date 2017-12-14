@@ -11,14 +11,14 @@ import { PlayerService } from '../../core/shared/services';
   styleUrls: ['./players.component.scss']
 })
 export class PlayersComponent implements OnInit {
-  players = new Array<Player>();
+  players: Array<Player>;
 
   constructor(
     private playerService: PlayerService,
     private router: Router) { }
 
   async ngOnInit(): Promise<void> {
-    this.getCharacters();
+    await this.getPlayers();
   }
 
   selectPlayer(email: string): void {
@@ -31,10 +31,10 @@ export class PlayersComponent implements OnInit {
 
   async deletePlayer(email: string): Promise<void> {
     await this.playerService.delete(email);
-    await this.getCharacters();
+    await this.getPlayers();
   }
 
-  private async getCharacters(): Promise<void> {
+  private async getPlayers(): Promise<void> {
     this.players = await this.playerService.get();
   }
 }
