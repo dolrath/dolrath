@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { ArenaSocketService, CharacterService } from '../../core/shared/services';
-import { Dice, Character, Room } from '../../core/shared/models';
+import { Dice, Character, Room, Roll } from '../../core/shared/models';
 
 @Component({
   selector: 'app-arena-lobby',
@@ -16,13 +16,16 @@ export class ArenaLobbyComponent implements OnInit, OnDestroy {
 
   room = new Room('default');
   character: Character;
-  messages: string[] = [];
+  rolls = new Array<Roll>();
+  JSON: any;
 
   constructor(
     private characterService: CharacterService,
     private route: ActivatedRoute,
     private router: Router,
-    private arenaService: ArenaSocketService) { }
+    private arenaService: ArenaSocketService) {
+      this.JSON = JSON;
+    }
 
   ngOnInit() {
     this.arenaService.init();
@@ -33,12 +36,12 @@ export class ArenaLobbyComponent implements OnInit, OnDestroy {
     });
 
     this.connections.push(this.arenaService
-      .messages
-      .subscribe(data => this.messages.push(JSON.stringify(data))));
+      .rolled
+      .subscribe(this.rolls.push.bind(this.rolls)));
 
     this.connections.push(this.arenaService
-      .players
-      .subscribe(players => players.forEach(this.room.addPlayer.bind(this.room))));
+      .characters
+      .subscribe(this.room.addCharacters.bind(this.room)));
   }
 
   ngOnDestroy() {
@@ -53,5 +56,9 @@ export class ArenaLobbyComponent implements OnInit, OnDestroy {
 
   join(): void {
     this.arenaService.join(this.room.name, this.character);
+  }
+
+  selectCharacter(character: Character): void {
+    this.router.navigate([`/players/${character.player.email}/characters/${character.name}`]);
   }
 }

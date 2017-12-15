@@ -40,9 +40,10 @@
     </article>
   </div>
   <ul class="uk-width-4-5@s uk-list">
-    <li *ngFor="let message of messages">
-      $
-      <span class="uk-text-muted">{{ message }}</span>
+    <li *ngFor="let roll of rolls">
+      <span class="uk-text-muted">
+          <a (click)="selectCharacter(roll.character)">{{ roll.character.name }}</a> rolled the dice <span class="uk-text-warning">d{{ roll.dice.value }}</span> and took <span class="uk-text-danger">{{ roll.dice.result }}</span>
+      </span>
     </li>
   </ul>
 </div>
