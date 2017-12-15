@@ -15,26 +15,32 @@
     <span class="uk-text-lead">Loading...</span>
   </div>
 
-  <article class="uk-comment" *ngFor="let player of players; let last = last">
-    <header class="uk-comment-header uk-grid-medium uk-flex-middle uk-grid">
-      <div class="uk-width-auto uk-first-column">
-        <img class="uk-comment-avatar uk-border-rounded uk-background-muted" src="https://goo.gl/PThQqr" width="80" height="80" alt="Player">
-      </div>
-      <div class="uk-width-expand">
-        <h4 class="uk-comment-title uk-margin-remove">
-          <a class="uk-link-reset" (click)="selectPlayer(player.email)">{{ player.email }}</a>
-        </h4>
-        <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
-          <li>
-            <a (click)="selectPlayer(player.email)">Play</a>
-          </li>
-          <li>
-            <a class="uk-text-danger" (click)="deletePlayer(player.email)">Delete</a>
-          </li>
-        </ul>
-      </div>
-    </header>
+  <div class="uk-background-muted uk-padding-small" *ngIf="players && players.length < 1">
+    <a class="uk-button uk-button-text" (click)="createPlayer()">Create a new player.</a>
+  </div>
 
-    <hr *ngIf="!last" />
-  </article>
+  <ng-container *ngIf="players && players.length > 0">
+    <article class="uk-comment" *ngFor="let player of players; let last = last">
+      <header class="uk-comment-header uk-grid-medium uk-flex-middle uk-grid">
+        <div class="uk-width-auto uk-first-column">
+          <img class="uk-comment-avatar uk-border-rounded uk-background-muted" src="https://goo.gl/PThQqr" width="80" height="80" alt="Player">
+        </div>
+        <div class="uk-width-expand">
+          <h4 class="uk-comment-title uk-margin-remove">
+            <a class="uk-link-reset" (click)="selectPlayer(player.email)">{{ player.email }}</a>
+          </h4>
+          <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+            <li>
+              <a (click)="selectPlayer(player.email)">Play</a>
+            </li>
+            <li>
+              <a class="uk-text-danger" (click)="deletePlayer(player.email)">Delete</a>
+            </li>
+          </ul>
+        </div>
+      </header>
+
+      <hr *ngIf="!last" />
+    </article>
+  </ng-container>
 </div>

@@ -4,7 +4,7 @@ import { Subject } from 'rxjs/Subject';
 import * as io from 'socket.io-client';
 
 import { environment } from '../../../../environments/environment';
-import { Dice, Character, Room } from '../models';
+import { Dice, Character, Roll, Room } from '../models';
 
 @Injectable()
 export class ArenaSocketService {
@@ -14,20 +14,18 @@ export class ArenaSocketService {
     this.socket = io(environment.socket.fightsUrl);
   }
 
-  get messages(): Observable<any> {
+  get rolled(): Observable<Roll> {
     return new Observable(observer => {
-      this.socket.on('dice:rolled', data => observer.next(data));
-      this.socket.on('room:joined', data => observer.next(data));
-      this.socket.on('room:left', data => observer.next(data));
+      this.socket.on('dice:rolled', data => observer.next(this.mapRolled(data)));
 
       return () => this.socket.disconnect();
     });
   }
 
-  get players(): Observable<Array<Character>> {
+  get characters(): Observable<Array<Character>> {
     return new Observable(observer => {
-      this.socket.on('room:joined', data => observer.next(this.getPlayers(data)));
-      this.socket.on('room:left', data => observer.next(this.getPlayers(data)));
+      this.socket.on('room:joined', data => observer.next(this.mapCharacters(data)));
+      this.socket.on('room:left', data => observer.next(this.mapCharacters(data)));
 
       return () => this.socket.disconnect();
     });
@@ -54,8 +52,8 @@ export class ArenaSocketService {
     }
 
     const message = {
-      player: {
-        email: character.name,
+      character: {
+        name: character.name,
       },
       room: room.name,
       dice: dice,
@@ -64,14 +62,14 @@ export class ArenaSocketService {
     this.socket.emit('dice:roll', message);
   }
 
-  private getPlayers(data: any): Array<Character> {
-    return data.clients.map(client => new Character(
-      client,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined));
+  private mapCharacters(data: any): Array<Character> {
+    return data.characters.map(name => new Character(name));
+  }
+
+  private mapRolled(data: any): Roll {
+    const dice = new Dice(data.dice.value, data.dice.result);
+    const character = new Character(data.character.name);
+
+    return new Roll(dice, character);
   }
 }
